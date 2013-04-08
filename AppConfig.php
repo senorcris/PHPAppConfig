@@ -5,10 +5,9 @@ class AppConfig {
 	private $mode;
 	private $debug;
 	
-	public static function getInstance(){
+	public static function getInstance($configPath = null){
 		static $instance = NULL;
 		if($instance === NULL){
-			$configPath = dirname(__FILE__).'/../appconfig.xml';
 			$instance = new AppConfig($configPath);
 		}
 		return $instance;
