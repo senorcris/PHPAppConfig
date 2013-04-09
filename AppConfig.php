@@ -4,13 +4,13 @@ class AppConfig {
 	private $navs;
 	private $mode;
 	private $debug;
-	private static $instance = NULL;
+	private static $instance = null;
 	
 	public static function getInstance($configPath = null){
-		if($instance === NULL){
-			$instance = new AppConfig($configPath);
+		if(self::$instance === null){
+			self::$instance = new AppConfig($configPath);
 		}
-		return $instance;
+		return self::$instance;
 	}
 	
 	private function __construct(&$configPath){
@@ -22,12 +22,15 @@ class AppConfig {
 		$this->mode = $mode;
 		$this->env = $xml->$mode;
 		$this->debug = (string)strtolower($this->env->debug) === 'true';
-		$this->navs = (isset($this->env->web))? self::navsToArray($this->env->web->nav): NULL;
+		$this->navs = (isset($this->env->web))? self::navsToArray($this->env->web->nav): null;
 		return $this->env;
 	}
 	
-	public function getEnv() {
-		return $env;
+	public function getEnv($xpath = null) {
+		if($xpath === null)
+			return $this->env;
+		else if(is_string($xpath) && strlen($xpath))
+			return $this->env->xpath($xpath);
 	}
 
 	public function getDebug() {
