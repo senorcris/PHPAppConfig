@@ -4,9 +4,9 @@ class AppConfig {
 	private $navs;
 	private $mode;
 	private $debug;
+	private static $instance = NULL;
 	
 	public static function getInstance($configPath = null){
-		static $instance = NULL;
 		if($instance === NULL){
 			$instance = new AppConfig($configPath);
 		}
@@ -24,6 +24,10 @@ class AppConfig {
 		$this->debug = (string)strtolower($this->env->debug) === 'true';
 		$this->navs = (isset($this->env->web))? self::navsToArray($this->env->web->nav): NULL;
 		return $this->env;
+	}
+	
+	public function getEnv() {
+		return $env;
 	}
 
 	public function getDebug() {
