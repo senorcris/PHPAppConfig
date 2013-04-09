@@ -3,6 +3,21 @@ PHPAppConfig
 
 AppConfig for php -- This version supports multiple database connection strings, a public folder url in case you are required to append it to some local urls, a home url for the web root, navigation, and a debug flag. XML Web Application Configuration for PHP
 
+### Usage
+- Load your configuration file:
+`$config = AppConfig::getInstance('./appconfig.xml');`
+- Once you load the file once on your page you may access it without the path variable:
+`$config = AppConfig::getInstance();`
+- To __all__ grab the nodes of your xml configuration file:
+`AppConfig::getInstance()->getEnv();`
+- Or use xpath:
+`AppConfig::getInstance()->getEnv('//db/host');`
+
+### Debug Flag
+- You must have a debug flag at the root of each environment definition.
+- To access your debug flag (return type: *boolean*):
+`AppConfig::getInstance()->getDebug()`
+
 ## Sample AppConfig.xml (should be stored in the root folder -- will make configurable very soon.)
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?> 
