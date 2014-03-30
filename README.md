@@ -18,7 +18,7 @@ AppConfig for php -- This version supports multiple database connection strings,
 - To access your debug flag (return type: *boolean*):
 `AppConfig::getInstance()->getDebug()`
 
-## Sample AppConfig.xml (should be stored in the root folder -- will make configurable very soon.)
+## Sample AppConfig.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?> 
 <config>
